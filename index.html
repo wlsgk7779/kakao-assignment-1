@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Todo App</title>
+  <title>아기고릴라 둥둥 Todo App</title>
   <!-- 외부 CSS 파일 연결 -->
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -11,71 +11,104 @@
 
   <div class="container">
 
-    <!-- 앱 헤더 -->
+    <!-- 앱 헤더 (둥둥이 캐릭터 우측 배치) -->
     <header class="app-header">
-      <h1 class="app-title">My Todo</h1>
-      <p class="app-subtitle">오늘 할 일을 정리해보세요</p>
+      <div class="header-text-group">
+        <h1 class="app-title">둥둥's Todo</h1>
+        <p class="app-subtitle">오늘 할 일을 신나게 정리해보세요!</p>
+      </div>
+      <div class="header-character-wrapper">
+        <img src="image/dungdung.webp" alt="아기고릴라 둥둥" class="dungdung-header-img" />
+      </div>
     </header>
 
-    <!-- 주간 뷰 (새로 추가) -->
-    <!-- 이전/다음 주 버튼과 월~일 날짜 칸을 가로로 나열 -->
-    <section class="week-nav">
-      <!-- 이전 주 버튼 -->
-      <button id="prev-week-btn" class="week-nav-btn">&#8592;</button>
+    <!-- [구조 통합] 모든 요소를 감싸 정돈해주는 거대한 메인 보드 카드 -->
+    <main class="main-board">
 
-      <!-- 요일 날짜 칸 7개: JS에서 동적으로 채워줌 -->
-      <div id="week-days" class="week-days"></div>
-
-      <!-- 다음 주 버튼 -->
-      <button id="next-week-btn" class="week-nav-btn">&#8594;</button>
-    </section>
-
-    <!-- 선택된 날짜 표시 (일간 뷰에서 사용하던 것 유지) -->
-    <section class="date-nav">
-      <button id="prev-date-btn" class="date-nav-btn">&#8592;</button>
-      <span id="current-date-display" class="current-date"></span>
-      <button id="next-date-btn" class="date-nav-btn">&#8594;</button>
-    </section>
-
-    <!-- Todo 입력 영역 -->
-    <section class="input-section">
-      <div class="input-wrapper">
-        <!-- Todo 텍스트 입력창 -->
-        <input
-          type="text"
-          id="todo-input"
-          class="todo-input"
-          placeholder="할 일을 입력하세요..."
-        />
-        <!-- Todo 추가 버튼 -->
-        <button id="add-btn" class="add-btn">추가</button>
+      <!-- 연도/월 표시 및 달력 버튼 -->
+      <div class="week-header-wrapper">
+        <div id="week-month-display" class="week-month-display"></div>
+        <button id="open-calendar-btn" class="open-calendar-btn" title="달력 보기">📅</button>
       </div>
-      <!-- 입력값이 비어있을 때 표시할 안내 메시지 (기본적으로 숨겨져 있음) -->
-      <p id="error-message" class="error-message hidden">⚠️ 할 일을 입력해주세요.</p>
-    </section>
 
-    <!-- 필터 탭 영역 -->
-    <!-- data-filter 속성으로 각 탭이 어떤 필터인지 구분 -->
-    <section class="filter-section">
-      <button class="filter-btn active" data-filter="all">전체</button>
-      <button class="filter-btn" data-filter="active">진행 중</button>
-      <button class="filter-btn" data-filter="completed">완료</button>
-    </section>
+      <!-- 주간 뷰 내비게이터 트랙 -->
+      <section class="week-nav">
+        <button id="prev-week-btn" class="week-nav-btn">&#8592;</button>
+        <div id="week-days" class="week-days"></div>
+        <button id="next-week-btn" class="week-nav-btn">&#8594;</button>
+      </section>
 
-    <!-- Todo 목록 영역 -->
-    <section class="list-section">
-      <!-- Todo 항목들이 여기에 동적으로 추가됨 -->
-      <ul id="todo-list" class="todo-list"></ul>
+      <!-- 선택된 날짜 표시 내비게이터 -->
+      <section class="date-nav">
+        <button id="prev-date-btn" class="date-nav-btn">&#8592;</button>
+        <span id="current-date-display" class="current-date"></span>
+        <button id="next-date-btn" class="date-nav-btn">&#8594;</button>
+      </section>
 
-      <!-- Todo가 없을 때 표시할 빈 상태 메시지 -->
-      <div id="empty-state" class="empty-state">
-        <p>📋 할 일이 없어요. 새로운 할 일을 추가해보세요!</p>
+      <!-- Todo 입력 영역 -->
+      <section class="input-section">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="todo-input"
+            class="todo-input"
+            placeholder="둥둥아 이거 먼저 해야 해..."
+          />
+          <select id="todo-category-select" class="todo-category-select"></select>
+          <button id="add-btn" class="add-btn">추가</button>
+        </div>
+        <p id="error-message" class="error-message hidden">⚠️ 할 일을 입력해야 둥둥이가 춤을 춰요!</p>
+      </section>
+
+      <!-- 필터 탭 영역 -->
+      <section class="filter-section">
+        <button class="filter-btn active" data-filter="all">전체</button>
+        <button class="filter-btn" data-filter="active">진행 중</button>
+        <button class="filter-btn" data-filter="completed">완료</button>
+      </section>
+
+      <!-- Todo 목록 영역 -->
+      <section class="list-section">
+        <!-- Todo 항목들이 여기에 동적으로 추가됨 -->
+        <ul id="todo-list" class="todo-list"></ul>
+
+        <!-- Todo가 없을 때 표시할 빈 상태 메시지 -->
+        <div id="empty-state" class="empty-state">
+          <div class="empty-character-wrapper">
+            <img src="./image/empty_image.png" alt="할 일 끝난 둥둥" class="dungdung-empty-img" />
+          </div>
+          <!-- 🎯 [쓸모없는 코드 제거] 자바스크립트가 동적으로 채워줄 것이므로 내부 텍스트는 비워둡니다 -->
+          <p></p>
+        </div>
+      </section>
+
+    </main> 
+    
+  </div> <!-- container 닫는 태그 위치를 main 바깥으로 정확하게 정렬 완료 -->
+  
+  <!-- 캘린더 형태로 보기 모달창 -->
+  <div id="calendar-modal" class="calendar-modal hidden">
+    <div class="calendar-overlay"></div>
+    <div class="calendar-content">
+      <header class="calendar-header">
+        <button id="cal-prev-month" class="cal-nav-btn">&#8592;</button>
+        <h2 id="cal-month-year-title" class="cal-title">2026년 6월</h2>
+        <button id="cal-next-month" class="cal-nav-btn">&#8594;</button>
+      </header>
+      
+      <div class="calendar-weekdays">
+        <div class="sun">일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div class="sat">토</div>
       </div>
-    </section>
-
+      
+      <div id="calendar-grid" class="calendar-grid"></div>
+      
+      <footer class="calendar-footer">
+        <button id="close-calendar-btn" class="close-btn">닫기</button>
+      </footer>
+    </div>
   </div>
 
-  <!-- 외부 JS 파일 연결 (HTML이 모두 로드된 후 실행되도록 body 맨 아래에 위치) -->
+  <!-- 외부 JS 파일 연결 -->
   <script src="app.js"></script>
 </body>
 </html>
