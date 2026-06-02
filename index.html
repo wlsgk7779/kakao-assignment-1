@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo App</title>
+  <!-- 외부 CSS 파일 연결 -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- 앱 헤더 -->
+    <header class="app-header">
+      <h1 class="app-title">My Todo</h1>
+      <p class="app-subtitle">오늘 할 일을 정리해보세요</p>
+    </header>
+
+    <!-- 주간 뷰 (새로 추가) -->
+    <!-- 이전/다음 주 버튼과 월~일 날짜 칸을 가로로 나열 -->
+    <section class="week-nav">
+      <!-- 이전 주 버튼 -->
+      <button id="prev-week-btn" class="week-nav-btn">&#8592;</button>
+
+      <!-- 요일 날짜 칸 7개: JS에서 동적으로 채워줌 -->
+      <div id="week-days" class="week-days"></div>
+
+      <!-- 다음 주 버튼 -->
+      <button id="next-week-btn" class="week-nav-btn">&#8594;</button>
+    </section>
+
+    <!-- 선택된 날짜 표시 (일간 뷰에서 사용하던 것 유지) -->
+    <section class="date-nav">
+      <button id="prev-date-btn" class="date-nav-btn">&#8592;</button>
+      <span id="current-date-display" class="current-date"></span>
+      <button id="next-date-btn" class="date-nav-btn">&#8594;</button>
+    </section>
+
+    <!-- Todo 입력 영역 -->
+    <section class="input-section">
+      <div class="input-wrapper">
+        <!-- Todo 텍스트 입력창 -->
+        <input
+          type="text"
+          id="todo-input"
+          class="todo-input"
+          placeholder="할 일을 입력하세요..."
+        />
+        <!-- Todo 추가 버튼 -->
+        <button id="add-btn" class="add-btn">추가</button>
+      </div>
+      <!-- 입력값이 비어있을 때 표시할 안내 메시지 (기본적으로 숨겨져 있음) -->
+      <p id="error-message" class="error-message hidden">⚠️ 할 일을 입력해주세요.</p>
+    </section>
+
+    <!-- 필터 탭 영역 -->
+    <!-- data-filter 속성으로 각 탭이 어떤 필터인지 구분 -->
+    <section class="filter-section">
+      <button class="filter-btn active" data-filter="all">전체</button>
+      <button class="filter-btn" data-filter="active">진행 중</button>
+      <button class="filter-btn" data-filter="completed">완료</button>
+    </section>
+
+    <!-- Todo 목록 영역 -->
+    <section class="list-section">
+      <!-- Todo 항목들이 여기에 동적으로 추가됨 -->
+      <ul id="todo-list" class="todo-list"></ul>
+
+      <!-- Todo가 없을 때 표시할 빈 상태 메시지 -->
+      <div id="empty-state" class="empty-state">
+        <p>📋 할 일이 없어요. 새로운 할 일을 추가해보세요!</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 외부 JS 파일 연결 (HTML이 모두 로드된 후 실행되도록 body 맨 아래에 위치) -->
+  <script src="app.js"></script>
+</body>
+</html>
