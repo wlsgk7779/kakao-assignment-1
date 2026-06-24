@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #f24a24;
+  --color-primary-hover: #d13612;
+  --color-primary-light: #eaf4ff;
+  --color-accent-yellow: #ffc800;
+  --color-danger: #e53e3e;
+  --color-danger-hover: #c53030;
+  --color-success: #38a169;
+  --color-success-hover: #2f855a;
+  --color-edit: #3182ce;
+  --color-edit-hover: #2b6cb0;
+  --color-text-main: #2d3748;
+  --color-text-muted: #718096;
+  --color-border-main: #cbd5e0;
+  --color-app-bg: #d0e7ff;
+  --color-card-bg: #ffffff;
+  --color-todo-item-bg: #f8fafc;
+
+  --radius-dung: 20px;
+  --shadow-dung: 0 4px 20px rgba(45, 55, 72, 0.08);
+}
+
+@layer base {
+  body {
+    @apply bg-app-bg text-text-main font-sans min-h-screen flex justify-center p-10;
+  }
+}
